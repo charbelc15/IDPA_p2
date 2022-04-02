@@ -1,9 +1,21 @@
 
 import xml.etree.ElementTree as ET
+
+from numpy import full
 from Project1_parts.Part2.Nierman_Jagadish import TED
 from Project1_parts.Part1.displayTree import displayTree
 from Project1_parts.Part2_Chawathe.Chawathe import Chawathe
 from Project1_parts.Part2_Chawathe.getNodesHeights import getNodesHeights
+from Project2_parts.Part1_CompareVectors.term_weighting.IDF import IDF
+from Project2_parts.Part1_CompareVectors.term_weighting.TF import TF
+from Project2_parts.Part1_CompareVectors.term_weighting.countsArray import countsArray
+
+from Project2_parts.Part1_CompareVectors.term_weighting.weight import weight
+from Project2_parts.Part1_CompareVectors.term_weighting.weight_TF import weight_TF
+from Project2_parts.Part1_CompareVectors.term_weighting.weight_IDF import weight_IDF
+from Project2_parts.Part1_CompareVectors.vector.vector_Full import vector_Full
+from Project2_parts.Part1_CompareVectors.vector.vector_IDF import vector_IDF
+from Project2_parts.Part1_CompareVectors.vector.vector_TF import vector_TF
 
 
 string1='xml_files/test5.xml'
@@ -90,3 +102,58 @@ newXML2 = ET.tostring(tree2.getroot(), encoding='utf8').decode('utf8')
 text_file2 = open("new_Test2.xml", "w")
 n2 = text_file2.write(newXML2)
 text_file2.close()
+
+
+
+#Project 2 testing
+word = "it"
+word = word.lower()
+doc = 0
+documents=["My Name Is Charbel? Yes it is Charbel", "Is my name Charbel?", "No I dont think so"]
+#documents=["My Name Is Charbel? Yes it is Charbel"]
+print(countsArray(documents)[0])
+print(countsArray(documents)[1])
+
+print("TF: " , TF(word, countsArray(documents)[0], countsArray(documents)[1],doc))
+print("IDF: " , IDF(word, countsArray(documents)[0], countsArray(documents)[1]))
+print("Full weight: " , weight(word,doc,documents))
+print("Weight with TF only: " , weight_TF(word,doc,documents))
+print("Weight with IDF only: " , weight_IDF(word,doc,documents))
+
+docs = ["My Name Is Charbel? Yes it is Charbel", "ECE"]
+
+# TF    ||      IDF         ||      BOTH    
+# FOR     DOC1 of docs!!!!!! **
+# !!! vector TF ONLY RETURNS first array of counter_Arrays
+
+
+
+
+# words positions
+print(vector_TF(docs)[0])
+# TF array !!SYNTAX!! [[ ]]
+test_vector_TF = vector_TF(docs)[1][0]
+print(test_vector_TF)
+#correct : at position 0 values are x2
+
+# words positions
+print(vector_IDF(docs)[0])
+# TF array !!SYNTAX!! [[ ]]
+test_vector_IDF = vector_IDF(docs)[1]
+print(test_vector_IDF)
+#correct : all values are the same      since each unique word is contained in only 1 document ln(2/1)
+
+#method 1 for Full : using weight.py (just like augmented_vector_IDF)
+# # words positions
+# print(augmented_vector_Full(doc1)[0])
+# # TF array !!SYNTAX!! [[ ]]
+# print(augmented_vector_Full(doc1)[1])
+
+
+#method 2 for Full : using the produced IDF and TR vectors : mulitply elements that are at same position (1 from each vector)
+test_vector_Full = vector_Full(test_vector_TF, test_vector_IDF)
+print(test_vector_Full)
+#correct : at position 0 and at 2 values are x2 (charbel \\ is)
+#correct : at position 1 we have a 0 : ECE is not in document 1
+
+
