@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<country>
+        <rank>
+                <year>2008</year>
+                <gdppc>141100</gdppc>
+        </rank>
+        <rank>
+                <year name="C"></year>
+                <gdppc>141100</gdppc>
+                
+        </rank>       
+</country>

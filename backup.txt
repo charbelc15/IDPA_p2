@@ -1,0 +1,136 @@
+    for child_d1 in root1.iter(): #inorder 
+        for child_d2 in preorder(root2): #preorder
+            return subTree(child_d1,child_d2)
+
+ 
+
+
+# function to fill the height vector
+def getNodesHeights(i, parent, height):
+   
+    # if we have reached root node the
+    # return 1 as height of root node
+    if (parent[i] == -1):
+        return 1
+ 
+    # if we have calculated height of a
+    # node then return if
+    if (height[i] != -1):
+        return height[i]
+ 
+    # height from root to a node = height
+    # from root to nodes parent + 1
+    height[i] = getNodesHeights(parent[i], parent, height) + 1
+ 
+    # return nodes height
+    return height[i]  
+
+
+
+
+
+#sameTree
+
+from logging import root
+import xml.etree.ElementTree as ET
+
+
+def sameTree(root1, root2) -> bool:    
+    # if both trees are empty : same
+    if not root1 and not root2:
+        return True
+
+    # one of them is EMPTY the other is NOT EMPTY
+    if not root1 or not root2:
+        return False
+
+    # if the roots are different
+    if root1.tag != root2.tag:
+        return False
+
+    #now , both root1 and root2 and not empty       AND         root1 same as root2
+    for child_d1 in root1:
+        for child_d2 in root2:
+            return sameTree(child_d1,child_d2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def minCost(cost, m, n, steps):
+    if(n<0 or m<0):
+        return sys.maxsize
+    elif (m==0 and n==0):
+        steps.append([m,n])
+        return cost[m][n]
+    else:
+        minimum = min(
+            minCost(cost, m-1, n-1, steps),
+            minCost(cost, m-1, n, steps),
+            minCost(cost, m, n-1, steps),
+        )
+        if(minimum == minCost(cost, m-1, n-1, steps)):
+            steps.append([m-1,n-1])
+        elif(minimum == minCost(cost, m-1, n, steps)):
+            steps.append([m-1,n])
+        elif(minimum == minCost(cost, m, n-1, steps)):
+            steps.append([m,n-1])    
+        return cost[m][n] + minimum
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def update(root, node_del, node_ins, nested=False):
+    for child in reversed(root):
+        if nested:
+            if len(child) >= 1:
+                update(child,node_del, node_ins)
+        if child==node_del:  
+            print("Hi")
+            child.tag = node_ins.tag
+            if(node_ins.text != None and node_ins.attrib != None):
+                child.text = node_ins.text
+                child.attrib = node_ins.attrib
+                

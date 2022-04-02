@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<country1 name="Liechtenstein" value="Charbel">
+        <rank>
+                <year>2008</year>
+                <gdppc>141100</gdppc>
+        </rank>
+        <rank>
+                <year>2008</year>
+                <gdppc>141100</gdppc>
+                <h1>123</h1>
+        </rank>       
+</country1>
