@@ -13,12 +13,19 @@ from Project2_parts.Part1_CompareVectors.term_weighting.countsArray import count
 from Project2_parts.Part1_CompareVectors.term_weighting.weight import weight
 from Project2_parts.Part1_CompareVectors.term_weighting.weight_TF import weight_TF
 from Project2_parts.Part1_CompareVectors.term_weighting.weight_IDF import weight_IDF
+from Project2_parts.Part1_CompareVectors.vector.Filter_Text import Filter_Text
+from Project2_parts.Part1_CompareVectors.vector.acceptable_text import acceptable_text
+from Project2_parts.Part1_CompareVectors.vector.augmented_vector_Full import augmented_vector_Full
+from Project2_parts.Part1_CompareVectors.vector.augmented_vector_IDF import augmented_vector_IDF
+from Project2_parts.Part1_CompareVectors.vector.augmented_vector_TF import augmented_vector_TF
+from Project2_parts.Part1_CompareVectors.vector.getDocFullText import getDocFullText
+from Project2_parts.Part1_CompareVectors.vector.getPathFactor import getPathFactor
 from Project2_parts.Part1_CompareVectors.vector.vector_Full import vector_Full
 from Project2_parts.Part1_CompareVectors.vector.vector_IDF import vector_IDF
 from Project2_parts.Part1_CompareVectors.vector.vector_TF import vector_TF
 
 
-string1='xml_files/test5.xml'
+string1='xml_files/Project2_test1.xml'
 string2='xml_files/test6.xml' 
 
 
@@ -106,6 +113,11 @@ text_file2.close()
 
 
 #Project 2 testing
+
+text='??'
+print(acceptable_text(text))
+
+
 word = "it"
 word = word.lower()
 doc = 0
@@ -120,7 +132,7 @@ print("Full weight: " , weight(word,doc,documents))
 print("Weight with TF only: " , weight_TF(word,doc,documents))
 print("Weight with IDF only: " , weight_IDF(word,doc,documents))
 
-docs = ["My Name Is Charbel? Yes it is Charbel", "ECE"]
+docs = ["My Name Is Charbel? Yes it is Charbel", "ECE Charbel"]
 
 # TF    ||      IDF         ||      BOTH    
 # FOR     DOC1 of docs!!!!!! **
@@ -132,7 +144,7 @@ docs = ["My Name Is Charbel? Yes it is Charbel", "ECE"]
 # words positions
 print(vector_TF(docs)[0])
 # TF array !!SYNTAX!! [[ ]]
-test_vector_TF = vector_TF(docs)[1][0]
+test_vector_TF = vector_TF(docs)[1]
 print(test_vector_TF)
 #correct : at position 0 values are x2
 
@@ -157,3 +169,68 @@ print(test_vector_Full)
 #correct : at position 1 we have a 0 : ECE is not in document 1
 
 
+
+#Augmented Vector
+
+# Get the Element Properties for each node of XML doc
+# Contains : 
+    # Element itself 
+        #   to which we map the text values
+    # Tag of the element
+        #   title
+    # Path factor 
+        #  (0.5*0.6*0.4) in slides --> random value --> took it as 1/(1+depth)
+    # Text Value 
+        #  to be compared with Full Text values of Doc (next)
+
+flagcounter3 = 0
+for i in tree_root1.iter(): 
+    flagcounter3+=1
+
+ElementProperties=[]
+flag3 = [False]*flagcounter3
+getPathFactor(tree_root1,flag3,0,False,ElementProperties) 
+print()
+print("Element Properties : ", ElementProperties)
+
+
+# Get the *Filtered Full Text* of Doc1 to produce term weighting TF / IDF
+
+#pass over all doc and add text values to a list : text
+flagcounter4 = 0
+for i in tree_root1.iter(): 
+    flagcounter4+=1
+
+text=[]
+flag4 = [False]*flagcounter4
+getDocFullText(tree_root1,flag4,0,False,text)
+print()
+
+#Convert the list text to a String doc "Full text"
+FullText=""
+for text_val in text:
+    #FullText+= text_val.split('\n')[0] + " "
+    FullText+= text_val + " "
+
+#filter Fulltext values from stop words : i, a, special char, \n...
+Filtered_Text = Filter_Text(FullText)
+print("Doc1 Full Text : ", Filtered_Text)
+
+
+documents = [Filtered_Text, "Charbel LIU"]
+print("TF vector of doc1's word positions", vector_TF(documents)[0])
+print("TF vector of doc1 without path factor" , vector_TF(documents)[1][0])
+print()
+print()
+#considering 1 doc for now 
+docPosition = 0
+print("TF vector of doc1 with path factor" , augmented_vector_TF(documents,ElementProperties,docPosition,Filtered_Text))
+print()
+print("IDF vector of doc1 with path factor" , augmented_vector_IDF(documents,ElementProperties,docPosition,Filtered_Text))
+print()
+_vector_TF = vector_TF(documents)[1]
+_vector_IDF = vector_IDF(documents)[1]
+print("Full vector of doc1 with path factor" , augmented_vector_Full(documents,ElementProperties,docPosition,Filtered_Text,_vector_TF,_vector_IDF))
+
+#Augmented vector next step:
+#just add the values for the same elements

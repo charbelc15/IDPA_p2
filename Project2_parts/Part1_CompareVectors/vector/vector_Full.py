@@ -20,13 +20,21 @@ import numpy as np
 
     # return words_positions, vector
 
+#returns vectors of Full val weight for all docs in DOCUMENTS
 #method 2 : using vectors of both IF and IDF, multiply each element at same posiition of both vectors
-def vector_Full(vector_TF, vector_IDF):
+def vector_Full(vectors_TF, vectors_IDF):
     vector_Full=[]
-    counter = 0
-    for x in vector_TF:
-        full_weight = x*vector_IDF[counter]
-        counter = counter + 1
-        vector_Full.append(full_weight)
+    counter1 = 0
+    
+    for vector_TF in vectors_TF:
+        vector_IDF = vectors_IDF[counter1]
+        counter2 = 0
+        inner_vector=[]
+        for x in vector_TF:
+            full_weight = x*vector_IDF[counter2]
+            counter2 +=1
+            inner_vector.append(full_weight)
+        counter1 += 1
+        vector_Full.append(inner_vector)
 
     return vector_Full
