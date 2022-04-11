@@ -8,6 +8,10 @@ from Project2_parts.Part1_CompareVectors.vector.acceptable_text import acceptabl
 from Project2_parts.Part1_CompareVectors.vector.vector_TF import vector_TF
 
 #returns the augmented vector of the specified document
+#Each document: 
+#   Own position, 
+#   Own filtered text, 
+#   Own Element Properties
 def augmented_vector_TF(documents, ElementProperties,docposition,Doc_filtered_text):
     words_positions = vector_TF(documents)[0]
     counts_Array = vector_TF(documents)[1][docposition]   # !!doc Position (which of C are we considering)

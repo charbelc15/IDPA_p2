@@ -1,0 +1,17 @@
+<University> This is a University of LAU!
+    <Faculty>
+        <Department>Civil
+            <Professor>Chatila</Professor>
+            <Professor>Issa</Professor>
+            <Student>Alex</Student>
+            <Student>Rebecca</Student>
+        </Department>
+        <Lab>
+            <Student>Maria</Student>
+            <Student>Yara</Student>
+        </Lab>
+    </Faculty>
+</University>
+
+            
+            

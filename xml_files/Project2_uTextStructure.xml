@@ -1,0 +1,10 @@
+<House>My Home!
+    <Room>
+        <room1>living</room1>
+        <room2>kitchen</room2>
+        <room3>salon</room3>
+    </Room>
+    <Parking>
+        <p1>space1</p1>
+    </Parking>
+</House>

@@ -6,10 +6,6 @@
             <Student>John</Student>
             <Student>Takagi</Student>
         </Department>
-        <Lab>
-            <Student>Mark</Student>
-            <Student>Cramer</Student>
-        </Lab>
     </Faculty>
 </University>
 

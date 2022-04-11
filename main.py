@@ -23,6 +23,8 @@ from Project2_parts.Part1_CompareVectors.vector.getPathFactor import getPathFact
 from Project2_parts.Part1_CompareVectors.vector.vector_Full import vector_Full
 from Project2_parts.Part1_CompareVectors.vector.vector_IDF import vector_IDF
 from Project2_parts.Part1_CompareVectors.vector.vector_TF import vector_TF
+from Project2_parts.Part1_CompareVectors.vector_average.PCC import PCC
+from Project2_parts.Part1_CompareVectors.vector_tools.vector_to_dict import vector_to_dict
 
 
 string1='xml_files/Project2_test1.xml'
@@ -217,20 +219,73 @@ Filtered_Text = Filter_Text(FullText)
 print("Doc1 Full Text : ", Filtered_Text)
 
 
-documents = [Filtered_Text, "Charbel LIU"]
+documents = [Filtered_Text, "Charbel LIU", "aub ece john", " no relation here"]
 print("TF vector of doc1's word positions", vector_TF(documents)[0])
 print("TF vector of doc1 without path factor" , vector_TF(documents)[1][0])
 print()
 print()
 #considering 1 doc for now 
-docPosition = 0
+docPosition = 1
 print("TF vector of doc1 with path factor" , augmented_vector_TF(documents,ElementProperties,docPosition,Filtered_Text))
 print()
 print("IDF vector of doc1 with path factor" , augmented_vector_IDF(documents,ElementProperties,docPosition,Filtered_Text))
 print()
 _vector_TF = vector_TF(documents)[1]
 _vector_IDF = vector_IDF(documents)[1]
+print(_vector_TF)
+print(_vector_IDF)
 print("Full vector of doc1 with path factor" , augmented_vector_Full(documents,ElementProperties,docPosition,Filtered_Text,_vector_TF,_vector_IDF))
 
-#Augmented vector next step:
-#just add the values for the same elements
+
+
+#Comparing augmented vectors 
+aug_vector_TF_1 = augmented_vector_IDF(documents,ElementProperties,0,Filtered_Text)
+aug_vector_TF_2 = augmented_vector_IDF(documents,ElementProperties,1,Filtered_Text)
+aug_vector_TF_3 = augmented_vector_IDF(documents,ElementProperties,2,Filtered_Text)
+aug_vector_TF_4 = augmented_vector_IDF(documents,ElementProperties,3,Filtered_Text)
+
+aug_vector_IDF_1 = augmented_vector_IDF(documents,ElementProperties,0,Filtered_Text)
+aug_vector_IDF_2 = augmented_vector_IDF(documents,ElementProperties,1,Filtered_Text)
+aug_vector_IDF_3 = augmented_vector_IDF(documents,ElementProperties,2,Filtered_Text)
+aug_vector_IDF_4 = augmented_vector_IDF(documents,ElementProperties,3,Filtered_Text)
+
+_vector_TF_1 = vector_TF(documents)[1]
+_vector_IDF_1 = vector_IDF(documents)[1]
+_vector_TF_2 = vector_TF(documents)[1]
+_vector_IDF_2 = vector_IDF(documents)[1]
+_vector_TF_3 = vector_TF(documents)[1]
+_vector_IDF_3 = vector_IDF(documents)[1]
+_vector_TF_4 = vector_TF(documents)[1]
+_vector_IDF_4 = vector_IDF(documents)[1]
+
+aug_vector_Full_1 = augmented_vector_Full(documents,ElementProperties,0,Filtered_Text,_vector_TF_1,_vector_IDF_1)
+aug_vector_Full_2 = augmented_vector_Full(documents,ElementProperties,1,Filtered_Text,_vector_TF_2,_vector_IDF_2)
+aug_vector_Full_3 = augmented_vector_Full(documents,ElementProperties,2,Filtered_Text,_vector_TF_3,_vector_IDF_3)
+aug_vector_Full_4 = augmented_vector_Full(documents,ElementProperties,3,Filtered_Text,_vector_TF_4,_vector_IDF_4)
+
+
+
+#Augmented vector To dictionaries
+#  add the values for the same elements
+
+TF_dict1 = vector_to_dict(aug_vector_TF_1)
+TF_dict2 = vector_to_dict(aug_vector_TF_2)
+TF_dict3 = vector_to_dict(aug_vector_TF_3)
+TF_dict4 = vector_to_dict(aug_vector_TF_4)
+
+IDF_dict1 = vector_to_dict(aug_vector_IDF_1)
+IDF_dict2 = vector_to_dict(aug_vector_IDF_2)
+IDF_dict3 = vector_to_dict(aug_vector_IDF_3)
+IDF_dict4 = vector_to_dict(aug_vector_IDF_4)
+
+Full_dict1 = vector_to_dict(aug_vector_Full_1)
+Full_dict2 = vector_to_dict(aug_vector_Full_2)
+Full_dict3 = vector_to_dict(aug_vector_Full_3)
+Full_dict4 = vector_to_dict(aug_vector_Full_4)
+
+print("augmented TF vectors: ")
+print(Full_dict1)
+print(Full_dict2) 
+print()
+
+#print("Similarity via PCC: ", PCC( Full_dict1 , Full_dict2 ) )

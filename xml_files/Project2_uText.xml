@@ -1,0 +1,17 @@
+<University> mafik
+    <Faculty>
+        <Department> ykoun aandak
+            <Professor>shi</Professor>
+            <Professor>metel</Professor>
+            <Student>hayda</Student>
+            <Student>mahtout</Student>
+        </Department>
+        <Lab>
+            <Student>gher</Student>
+            <Student>mahal</Student>
+        </Lab>
+    </Faculty>
+</University>
+
+            
+            

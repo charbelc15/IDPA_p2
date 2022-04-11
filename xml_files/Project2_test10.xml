@@ -1,0 +1,13 @@
+<University> This is a University of LAU!
+    <Faculty>
+        <Department>Mechanical
+            <Professor>Ammouri</Professor>
+            <Professor>Bejjani</Professor>
+            <Student>Cyril</Student>
+            <Student>Anthony</Student>
+        </Department>
+    </Faculty>
+</University>
+
+            
+            

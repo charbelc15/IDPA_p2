@@ -1,0 +1,9 @@
+pip3 install scikit-learn
+
+pip3 install -U scikit-learn scipy matplotlib
+
+pip3 install sklearn
+
+
+Count Vectorizer explained
+https://kavita-ganesan.com/how-to-use-countvectorizer/#.YkgIdedBxPY
