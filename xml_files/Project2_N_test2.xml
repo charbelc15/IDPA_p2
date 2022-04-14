@@ -1,11 +1,9 @@
-<?xml version='1.0' encoding='utf8'?>
 <University> This is a University of LAU!
     <Faculty>
         <Department>ELE
             <Professor>Tannir</Professor>
             <Professor>Rjeily</Professor>
             <Student>Jimmy</Student>
-            <Student>Emily</Student>
         </Department>
         <Lab>
             <Student>Mark</Student>
@@ -13,3 +11,6 @@
         </Lab>
     </Faculty>
 </University>
+
+            
+            

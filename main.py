@@ -28,7 +28,7 @@ from Project2_parts.Part1_CompareVectors.vector_tools.vector_to_dict import vect
 
 
 string1='xml_files/Project2_test1.xml'
-string2='xml_files/test6.xml' 
+string2='xml_files/Project2_test2.xml' 
 
 
                                                                                                         #Part 1.1 XML TO TREE MODEL

@@ -1,0 +1,22 @@
+<University> I have created the examplary University!
+    <Faculty>
+        <Department>ECE
+            <Professor>John</Professor>
+            <Professor>Cramer</Professor>
+            <Student>John</Student>
+            <Student>Takagi</Student>
+            <Professor>John</Professor>
+            <Professor>Cramer</Professor>
+            <Student>John</Student>
+            <Student>Takagi</Student>
+            <Student>Takagi</Student>
+        </Department>
+        <Lab>
+            <Student>Mark</Student>
+            <Student>Cramer</Student>
+        </Lab>
+    </Faculty>
+</University>
+
+            
+            

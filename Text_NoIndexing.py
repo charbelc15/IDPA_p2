@@ -305,6 +305,23 @@ print(QueryDocs)
 
 print(documents)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # query TF
 TF_Query = Query_TF_vector(documents)       # vector
 TF_Query_dict = vector_to_dict(TF_Query)    # dict
