@@ -9,6 +9,96 @@ from pathlib import Path
 # Explicit imports to satisfy Flake8
 from tkinter import BOTH, YES, Image, Tk, Canvas, Entry, Text, Button, PhotoImage, ttk
 from tkinter.tix import IMAGETEXT
+from Project2_parts.gui_functions.Start_btn import Start_btn
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Projet 2 inputs
+from Project2_parts.gui_functions.get_Full_Indexing_Cosine import get_Full_Indexing_Cosine
+from Project2_parts.gui_functions.get_Full_Indexing_PCC import get_Full_Indexing_PCC
+from Project2_parts.gui_functions.get_Full_NoIndexing_Cosine import get_Full_NoIndexing_Cosine
+from Project2_parts.gui_functions.get_Full_NoIndexing_PCC import get_Full_NoIndexing_PCC
+from Project2_parts.gui_functions.get_IDF_Indexing_Cosine import get_IDF_Indexing_Cosine
+from Project2_parts.gui_functions.get_IDF_Indexing_PCC import get_IDF_Indexing_PCC
+from Project2_parts.gui_functions.get_IDF_NoIndexing_Cosine import get_IDF_NoIndexing_Cosine
+from Project2_parts.gui_functions.get_IDF_NoIndexing_PCC import get_IDF_NoIndexing_PCC
+from Project2_parts.gui_functions.get_TED import getTED
+import os
+from Project2_parts.gui_functions.get_TF_Indexing_Cosine import get_TF_Indexing_Cosine
+from Project2_parts.gui_functions.get_TF_Indexing_PCC import get_TF_Indexing_PCC
+from Project2_parts.gui_functions.get_TF_NoIndexing_Cosine import get_TF_NoIndexing_Cosine
+
+from Project2_parts.gui_functions.get_TF_NoIndexing_PCC import get_TF_NoIndexing_PCC
+from Project2_parts.Part1_CompareVectors.vector.Filter_Text import Filter_Text
+
+
+#TED
+#ADD r before string for it to work!!
+
+#Lea here we want the FilePath from browse button
+FilePath = r"C:\Users\Charbel\Desktop\LAU\LAU Fourth Year\Spring2022\IDPA\Project2\CodeProject2\ET\xml_files\Project2_N_test1.xml"
+getTED(FilePath)
+
+#QUERY 
+strings=[
+    'xml_files/Project2_test1.xml' # 1
+    ,'xml_files/Project2_test2.xml' # 2
+   ,'xml_files/Project2_test3.xml' # 3
+   ,'xml_files/Project2_test4.xml' # 4
+   ,'xml_files/Project2_test5.xml' # 5
+   ,'xml_files/Project2_test6.xml' # 6
+   ,'xml_files/Project2_test7.xml' # 7
+   ,'xml_files/Project2_test8.xml' # 8
+   ,'xml_files/Project2_test9.xml' # 9
+   ,'xml_files/Project2_test10.xml'  # 10
+]
+
+
+#Lea here we want the Query from Write your Query text box
+Query = 'tannir ece chocolat?   I @'
+
+
+
+
+text_to_search_for=Query
+    #remove special characters, I, a
+filtered_text_to_search_for = Filter_Text(text_to_search_for)
+    #remove leading / trailing whitespaces
+Query = filtered_text_to_search_for.strip()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -189,7 +279,7 @@ button_4 = Button(
     borderwidth=0,
     highlightthickness=0,
 
-    command=lambda: print("button_4 clicked"),
+    command=lambda: Start_btn(strings, Query, Combo1, Combo2, Combo3),
     relief="flat"
 )
 button_4.place(
@@ -217,41 +307,43 @@ entry_4.place(
     width=238.0,
     height=29.0
 )
-vlist = ["IDF", "TF", "FULL"]
+vlist = ["TF", "IDF", "FULL"]
  
-Combo = ttk.Combobox(window, values = vlist, state="readonly")
-Combo.set("Pick an Option")
-Combo.place(
+Combo1 = ttk.Combobox(window, values = vlist, state="readonly")
+Combo1.set("Pick an Option")
+Combo1.place(
     x=715.0,
     y=264.0,
     width=99.0,
     height=18.0
 )
 
-vlist = ["Cosine Measure", "PCC measure"]
+
+vlist = ["Non Indexing", "With Indexing"]
  
-Combo = ttk.Combobox(window, values = vlist, state="readonly")
-Combo.set("Pick an Option")
-Combo.place(
+Combo2 = ttk.Combobox(window, values = vlist, state="readonly")
+Combo2.set("Pick an Option")
+Combo2.place(
     x=715.0,
     y=354.0,
     width=99.0,
     height=18.0
 )
-vlist = ["Indexing", "Non indexing"]
- 
-Combo = ttk.Combobox(window, values = vlist, state="readonly")
-Combo.set("Pick an Option")
-Combo.place(
+
+vlist = ["PCC Measure", "Cosine measure"]
+
+Combo3 = ttk.Combobox(window, values = vlist, state="readonly")
+Combo3.set("Pick an Option")
+Combo3.place(
     x=715.0,
     y=444.0,
     width=99.0,
     height=18.0
 )
 
-Combo.config(font='Aerial 7',justify='center'  )
-Combo.config(font='Aerial 7',justify='center'  )
-Combo.config(font='Aerial 7',justify='center'  )
+Combo1.config(font='Aerial 7',justify='center'  )
+Combo2.config(font='Aerial 7',justify='center'  )
+Combo3.config(font='Aerial 7',justify='center'  )
 
 window.resizable(False, False)
 window.mainloop()
