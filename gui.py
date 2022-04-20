@@ -53,7 +53,6 @@ from Project2_parts.Part1_CompareVectors.vector.Filter_Text import Filter_Text
 
 #Lea here we want the FilePath from browse button
 FilePath = r"C:\Users\Charbel\Desktop\LAU\LAU Fourth Year\Spring2022\IDPA\Project2\CodeProject2\ET\xml_files\Project2_N_test1.xml"
-getTED(FilePath)
 
 #QUERY 
 strings=[
@@ -246,7 +245,7 @@ button_2 = Button(
     image=button_image_2,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
+    command=lambda: getTED(FilePath),
     relief="flat"
 )
 button_2.place(
