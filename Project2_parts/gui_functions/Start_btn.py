@@ -14,9 +14,15 @@ from Project2_parts.gui_functions.get_TF_NoIndexing_Cosine import get_TF_NoIndex
 
 from Project2_parts.gui_functions.get_TF_NoIndexing_PCC import get_TF_NoIndexing_PCC
 
+import time
+
+
 #Start button conditions 
 
 def Start_btn(strings,Query, Combo1, Combo2, Combo3):
+    start_time = time.time()
+
+
     # combo1 
         #   0: TF  
         #   1:IDF 
@@ -98,6 +104,9 @@ def Start_btn(strings,Query, Combo1, Combo2, Combo3):
     elif(Combo1.current()==2 and Combo2.current()==1 and Combo3.current()==1):
         #Full INdexing Cosine
         get_Full_Indexing_Cosine(strings,Query)
+
+    
+    print("--- %s seconds ---" % (time.time() - start_time))
 
     
 
